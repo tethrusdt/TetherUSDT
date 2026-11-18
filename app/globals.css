@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* Class-based dark mode — `dark` is toggled on <html>. Light is the default. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-50: #eafaf4;
+  --color-brand-100: #cdf0e0;
+  --color-brand-200: #9ee0c2;
+  --color-brand-300: #65cba0;
+  --color-brand-400: #32b37e;
+  --color-brand-500: #26a69a;
+  --color-brand-600: #1e8c58;
+  --color-brand-700: #1a7049;
+  --color-brand-800: #18593c;
+  --color-brand-900: #154932;
+
+  --color-ink-950: #060b0e;
+  --color-ink-900: #0a1217;
+  --color-ink-800: #0f1c24;
+  --color-ink-700: #162731;
+  --color-ink-600: #1e3541;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Semantic theme tokens. `inline` so utilities resolve straight to the
+   CSS variables that flip between light and dark. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent-fg);
+}
+
+/* ── Light theme (default) ─────────────────────────────────────────── */
+:root {
+  color-scheme: light;
+
+  --bg: #f4f8f7;
+  --surface: #ffffff;
+  --surface-2: #eef4f2;
+
+  --fg: #081b16;
+  --fg-muted: #4a5f59;
+  --fg-subtle: #74887f;
+
+  --line: #e2ebe8;
+  --line-strong: #cddfd9;
+
+  --accent-fg: #16805a;
+  --grid-line: rgba(8, 27, 22, 0.05);
+
+  --background: var(--bg);
+  --foreground: var(--fg);
+}
+
+/* ── Dark theme (opt-in) ───────────────────────────────────────────── */
+.dark {
+  color-scheme: dark;
+
+  --bg: #060b0e;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-2: rgba(255, 255, 255, 0.06);
+
+  --fg: #e8f5ee;
+  --fg-muted: rgba(232, 245, 238, 0.66);
+  --fg-subtle: rgba(232, 245, 238, 0.45);
+
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.18);
+
+  --accent-fg: #32b37e;
+  --grid-line: rgba(255, 255, 255, 0.05);
+
+  --background: var(--bg);
+  --foreground: var(--fg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #26a69a;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.08); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulseGlow 5s ease-in-out infinite; }
+.animate-fade-up { animation: fadeUp 0.7s ease-out both; }
+
+.text-balance { text-wrap: balance; }
+
+/* Subtle grid overlay that follows the active theme */
+.bg-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}

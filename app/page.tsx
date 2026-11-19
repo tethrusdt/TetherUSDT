@@ -144,6 +144,9 @@ export default function Home() {
             <a href="#why" className="transition-colors hover:text-fg">
               Why Tether
             </a>
+            <a href="/whitepaper" className="transition-colors hover:text-fg">
+              Whitepaper
+            </a>
             <a href="#tokenomics" className="transition-colors hover:text-fg">
               Tokenomics
             </a>
@@ -610,6 +613,7 @@ export default function Home() {
               <FooterCol
                 title="Resources"
                 links={[
+                  { label: "Whitepaper", href: "/whitepaper" },
                   { label: "Etherscan", href: etherscanUrl, external: true },
                   {
                     label: "OpenZeppelin",
